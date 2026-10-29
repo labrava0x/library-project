@@ -77,45 +77,93 @@ body::before {
 }
 
 /* ==========================================
-   LAYOUT GRID
+   LAYOUT & CONTROLS
    ========================================== */
 .sanctuary-content {
-  display: grid;
-  grid-template-columns: 350px 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
 }
 
-@media (max-width: 900px) {
-  .sanctuary-content {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ==========================================
-   LEFT COLUMN: CONTROL TOWER (THE FORM)
-   Guarded, structured, zero tolerance for sloppy code
-   ========================================== */
-.control-tower {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  padding: 2rem;
-  height: fit-content;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+/* The Trigger Button to open our modal */
+#open-modal-btn {
+  max-width: 240px;
+  padding: 0.8rem;
+  background: transparent;
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-gold);
+  font-family: var(--font-main);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
   position: relative;
 }
 
-/* A sharp, unyielding accent line representing his protective boundary */
-.control-tower::before {
+#open-modal-btn::before {
   content: "";
   position: absolute;
   top: 0; left: 0; width: 4px; height: 100%;
   background: var(--accent-blaze);
 }
 
-.control-tower h2 {
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
+#open-modal-btn:hover {
+  background: var(--accent-gold);
+  color: var(--bg-deep);
+  box-shadow: 0 0 15px rgba(197, 168, 128, 0.3);
+}
+
+/* ==========================================
+   NATIVE DIALOG MODAL STYLING
+   ========================================== */
+dialog.sanctuary-dialog {
+  background: var(--bg-surface);
   color: var(--text-main);
+  border: 1px solid var(--border-color);
+  padding: 2rem;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+  position: relative;
+  margin: auto;
+}
+
+/* A sharp unyielding accent line on the modal representing his boundary */
+dialog.sanctuary-dialog::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 4px; height: 100%;
+  background: var(--accent-blaze);
+}
+
+/* Dark atmospheric backdrop for the modal */
+dialog.sanctuary-dialog::backdrop {
+  background: rgba(15, 14, 19, 0.85);
+  backdrop-filter: blur(4px);
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.dialog-header h2 {
+  font-size: 1.4rem;
+  color: var(--text-main);
+}
+
+.close-x-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-x-btn:hover {
+  color: var(--accent-blaze);
 }
 
 .guardian-note {
@@ -125,6 +173,7 @@ body::before {
   line-height: 1.4;
 }
 
+/* Form Styles inside Modal */
 .form-group {
   margin-bottom: 1.2rem;
 }
@@ -254,26 +303,29 @@ body::before {
   margin-bottom: 1.2rem;
 }
 
-/* Card Buttons */
+/* Card Buttons Fixed & Styled */
 .book-card button {
-  padding: 0.5rem;
+  width: 100%;
+  padding: 0.6rem;
   font-family: var(--font-main);
   font-size: 0.85rem;
   cursor: pointer;
   border: 1px solid var(--border-color);
   background: var(--bg-deep);
   color: var(--text-main);
-  margin-top: 0.4rem;
-  transition: background 0.2s ease;
+  margin-top: 0.5rem;
+  transition: all 0.2s ease;
 }
 
 .toggle-read-btn:hover {
   background: rgba(197, 168, 128, 0.15);
   border-color: var(--accent-gold);
+  color: var(--accent-gold);
 }
 
 .remove-btn {
   color: #d16969 !important;
+  border-color: rgba(209, 105, 105, 0.4);
 }
 
 .remove-btn:hover {
