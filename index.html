@@ -1,14 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library Project</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Library of My Dreams</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>My Library</h1>
 
-    <!-- This links your JavaScript file to the HTML page -->
-    <script src="script.js" defer></script>
+  <!-- Sanctuary Container -->
+  <div class="sanctuary-wrapper">
+
+    <!-- Header / Atmosphere -->
+    <header class="sanctuary-header">
+      <div class="rain-overlay"></div>
+      <h1>The Library of My Dreams</h1>
+      <p class="tagline">"The outside world stays behind the glass. Here, the shelves hold the line."</p>
+    </header>
+
+    <main class="sanctuary-content">
+
+      <!-- Left Column: The Form Guarded by Absolute Standards -->
+      <section class="control-tower">
+        <h2>Add to the Collection</h2>
+        <p class="guardian-note">No sloppy entries. Put the title, the author, and make sure every page counts.</p>
+        
+        <form id="book-form">
+          <div class="form-group">
+            <label for="title">Book Title</label>
+            <input type="text" id="title" required placeholder="e.g., The Master and Margarita">
+          </div>
+
+          <div class="form-group">
+            <label for="author">Author</label>
+            <input type="text" id="author" required placeholder="e.g., Mikhail Bulgakov">
+          </div>
+
+          <div class="form-group">
+            <label for="pages">Pages</label>
+            <input type="number" id="pages" required min="1" placeholder="390">
+          </div>
+
+          <div class="form-group checkbox-group">
+            <input type="checkbox" id="read">
+            <label for="read">Absorbed & Read</label>
+          </div>
+
+          <button type="submit" class="secure-btn">Place on Shelf</button>
+        </form>
+      </section>
+
+      <!-- Right Column: The Bookshelf Grid -->
+      <section class="bookshelf-wing">
+        <h2>The Sanctuary Shelves</h2>
+        <div id="library" class="library-grid">
+          <!-- Dynamic book cards rendered via JavaScript appear here -->
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

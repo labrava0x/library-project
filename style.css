@@ -1,0 +1,282 @@
+/* ==========================================
+   THE LIBRARY OF OUR DREAMS - STYLESHEET
+   A fusion of gothic melancholia and unyielding grit
+   ========================================== */
+
+/* CSS Reset & Variables */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-deep: #0f0e13;          /* Midnight abyss */
+  --bg-surface: #17151c;       /* Dark timber shelving */
+  --card-bg: #1f1b24;          /* Worn leather texture feel */
+  --border-color: #3b2f44;     /* Muted gothic violet-gray */
+  --accent-gold: #c5a880;      /* Antique page glow / old paper */
+  --accent-blaze: #ff4d00;     /* Katsuki's explosive spark / accent red */
+  --text-main: #e2dedb;        /* Soft parchment white */
+  --text-muted: #9c95a3;       /* Faded ink */
+  --font-main: 'Georgia', serif; /* Classic literary feel */
+}
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Subtle atmospheric rain/shadow overlay */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle at 50% 20%, rgba(197, 168, 128, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.sanctuary-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  z-index: 1;
+}
+
+/* ==========================================
+   HEADER: ATMOSPHERE & TITLE
+   ========================================== */
+.sanctuary-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+.sanctuary-header h1 {
+  font-size: 2.5rem;
+  color: var(--accent-gold);
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+  font-weight: normal;
+}
+
+.tagline {
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+/* ==========================================
+   LAYOUT GRID
+   ========================================== */
+.sanctuary-content {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .sanctuary-content {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================
+   LEFT COLUMN: CONTROL TOWER (THE FORM)
+   Guarded, structured, zero tolerance for sloppy code
+   ========================================== */
+.control-tower {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  padding: 2rem;
+  height: fit-content;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+/* A sharp, unyielding accent line representing his protective boundary */
+.control-tower::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 4px; height: 100%;
+  background: var(--accent-blaze);
+}
+
+.control-tower h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+}
+
+.guardian-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--accent-gold);
+  margin-bottom: 0.4rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--bg-deep);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--accent-blaze);
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+  accent-color: var(--accent-blaze);
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.checkbox-group label {
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.secure-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background: transparent;
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-gold);
+  font-family: var(--font-main);
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.secure-btn:hover {
+  background: var(--accent-gold);
+  color: var(--bg-deep);
+  box-shadow: 0 0 15px rgba(197, 168, 128, 0.3);
+}
+
+/* ==========================================
+   RIGHT COLUMN: THE BOOKSHELF WING
+   ========================================== */
+.bookshelf-wing {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  padding: 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.bookshelf-wing h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-main);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.8rem;
+}
+
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ==========================================
+   BOOK CARDS (THE VOLUMES)
+   ========================================== */
+.book-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  border-color: var(--accent-gold);
+}
+
+.book-card h3 {
+  font-size: 1.15rem;
+  color: var(--accent-gold);
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+
+.book-card .author {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 0.8rem;
+  font-style: italic;
+}
+
+.book-card .pages {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+}
+
+/* Card Buttons */
+.book-card button {
+  padding: 0.5rem;
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  background: var(--bg-deep);
+  color: var(--text-main);
+  margin-top: 0.4rem;
+  transition: background 0.2s ease;
+}
+
+.toggle-read-btn:hover {
+  background: rgba(197, 168, 128, 0.15);
+  border-color: var(--accent-gold);
+}
+
+.remove-btn {
+  color: #d16969 !important;
+}
+
+.remove-btn:hover {
+  background: rgba(209, 105, 105, 0.15) !important;
+  border-color: #d16969;
+}
