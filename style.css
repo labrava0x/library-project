@@ -1,0 +1,453 @@
+/* ==========================================
+   THE LIBRARY OF OUR DREAMS - EXPLOSIVE EDITION
+   A fusion of gothic melancholia and explosive grit
+   ========================================== */
+
+/* CSS Reset & Variables */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-deep: #0f0e13;          /* Midnight abyss */
+  --bg-surface: #17151c;       /* Dark timber shelving */
+  --card-bg: #1f1b24;          /* Worn leather texture feel */
+  --border-color: #3b2f44;     /* Muted gothic violet-gray */
+  --accent-gold: #c5a880;      /* Antique page glow / old paper */
+  --accent-blaze: #ff4d00;     /* Katsuki's explosive spark / accent red */
+  --accent-ember: #ff7700;     /* Bright fiery core */
+  --text-main: #e2dedb;        /* Soft parchment white */
+  --text-muted: #9c95a3;       /* Faded ink */
+  --font-main: 'Georgia', serif; /* Classic literary feel */
+}
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Subtle atmospheric amber/ash overlay */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle at 50% 15%, rgba(255, 77, 0, 0.04) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.sanctuary-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  z-index: 1;
+}
+
+/* ==========================================
+   HEADER: EXPLOSIVE ATMOSPHERE
+   ========================================== */
+.sanctuary-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2.5rem 2rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+/* Explosive left border frame on header */
+.sanctuary-header::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 6px; height: 100%;
+  background: linear-gradient(to bottom, var(--accent-blaze), var(--accent-gold));
+  box-shadow: 0 0 12px var(--accent-blaze);
+}
+
+.sanctuary-header h1 {
+  font-size: 2.5rem;
+  color: var(--accent-gold);
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+  font-weight: normal;
+}
+
+.tagline {
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+/* ==========================================
+   LAYOUT & CONTROLS
+   ========================================== */
+.sanctuary-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* The Trigger Button with Explosive Edge */
+#open-modal-btn {
+  max-width: 240px;
+  padding: 0.9rem;
+  background: transparent;
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-gold);
+  font-family: var(--font-main);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+#open-modal-btn::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 5px; height: 100%;
+  background: var(--accent-blaze);
+  box-shadow: 0 0 10px var(--accent-blaze);
+}
+
+#open-modal-btn:hover {
+  background: var(--accent-blaze);
+  color: #fff;
+  border-color: var(--accent-blaze);
+  box-shadow: 0 0 20px rgba(255, 77, 0, 0.6);
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   NATIVE DIALOG MODAL STYLING
+   ========================================== */
+dialog.sanctuary-dialog {
+  background: var(--bg-surface);
+  color: var(--text-main);
+  border: 1px solid var(--accent-gold);
+  padding: 2rem;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 25px rgba(255, 77, 0, 0.15);
+  position: relative;
+  margin: auto;
+}
+
+/* Fiery border frame on the modal */
+dialog.sanctuary-dialog::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 6px; height: 100%;
+  background: linear-gradient(to bottom, var(--accent-blaze), var(--accent-gold));
+  box-shadow: 0 0 12px var(--accent-blaze);
+}
+
+dialog.sanctuary-dialog::backdrop {
+  background: rgba(15, 14, 19, 0.88);
+  backdrop-filter: blur(6px);
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.dialog-header h2 {
+  font-size: 1.4rem;
+  color: var(--text-main);
+}
+
+.close-x-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-x-btn:hover {
+  color: var(--accent-blaze);
+  text-shadow: 0 0 8px var(--accent-blaze);
+}
+
+.guardian-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
+}
+
+/* Form Styles inside Modal */
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--accent-gold);
+  margin-bottom: 0.4rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--bg-deep);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--accent-blaze);
+  box-shadow: 0 0 10px rgba(255, 77, 0, 0.3);
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.checkbox-group input[type="checkbox"] {
+  accent-color: var(--accent-blaze);
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.checkbox-group label {
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.secure-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background: transparent;
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-gold);
+  font-family: var(--font-main);
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.secure-btn:hover {
+  background: var(--accent-blaze);
+  color: #fff;
+  border-color: var(--accent-blaze);
+  box-shadow: 0 0 18px rgba(255, 77, 0, 0.5);
+}
+
+/* ==========================================
+   RIGHT COLUMN: THE BOOKSHELF WING
+   ========================================== */
+.bookshelf-wing {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  padding: 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.bookshelf-wing::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 4px; height: 100%;
+  background: var(--border-color);
+}
+
+.bookshelf-wing h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-main);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.8rem;
+}
+
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ==========================================
+   BOOK CARDS (EXPLOSIVE FRAMES)
+   ========================================== */
+.book-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+/* Explosive Left Accent Edge on Every Book Card */
+.book-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 4px; height: 100%;
+  background: var(--accent-gold);
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Fiery Ignition on Hover */
+.book-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-blaze);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 77, 0, 0.25);
+}
+
+.book-card:hover::before {
+  background: var(--accent-blaze);
+  box-shadow: 0 0 10px var(--accent-blaze);
+}
+
+.book-card h3 {
+  font-size: 1.15rem;
+  color: var(--accent-gold);
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+
+.book-card .author {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 0.8rem;
+  font-style: italic;
+}
+
+.book-card .pages {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+}
+
+/* Card Action Buttons with Spark Hover Effects */
+.book-card button {
+  width: 100%;
+  padding: 0.6rem;
+  font-family: var(--font-main);
+  font-size: 0.85rem;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  background: var(--bg-deep);
+  color: var(--text-main);
+  margin-top: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.toggle-read-btn:hover {
+  background: rgba(197, 168, 128, 0.15);
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  box-shadow: 0 0 8px rgba(197, 168, 128, 0.3);
+}
+
+.remove-btn {
+  color: #d16969 !important;
+  border-color: rgba(209, 105, 105, 0.4);
+}
+
+.remove-btn:hover {
+  background: rgba(209, 105, 105, 0.2) !important;
+  border-color: #d16969;
+  box-shadow: 0 0 10px rgba(209, 105, 105, 0.3);
+}
+/* ==========================================
+   THE SANCTUARY PORTAL (IDLE / WAKE GATE)
+   ========================================== */
+.portal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(15, 14, 19, 0.95);
+  backdrop-filter: blur(12px);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease, backdrop-filter 0.8s ease;
+}
+
+/* Active state when the portal is closed/waiting */
+.portal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.portal-content {
+  max-width: 600px;
+  padding: 2rem;
+  position: relative;
+}
+
+/* Explosive accent line on the portal card */
+.portal-content::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 50%; transform: translateX(-50%);
+  width: 80px; height: 4px;
+  background: var(--accent-blaze);
+  box-shadow: 0 0 15px var(--accent-blaze);
+}
+
+.portal-content h1 {
+  font-size: 2.8rem;
+  color: var(--accent-gold);
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+  letter-spacing: 3px;
+  font-weight: normal;
+}
+
+.portal-prompt {
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.portal-key-hint {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: var(--accent-gold);
+  border: 1px solid var(--border-color);
+  padding: 0.6rem 1.2rem;
+  background: var(--bg-surface);
+  letter-spacing: 1px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  animation: pulse-glow 3s infinite ease-in-out;
+}
+
+.portal-key-hint kbd {
+  color: var(--accent-blaze);
+  font-weight: bold;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { border-color: var(--border-color); box-shadow: 0 0 5px rgba(255, 77, 0, 0.1); }
+  50% { border-color: var(--accent-blaze); box-shadow: 0 0 15px rgba(255, 77, 0, 0.3); }
+}

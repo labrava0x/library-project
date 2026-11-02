@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Library of My Dreams</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Portal Overlay (Idle / Wake Sanctuary Gate) -->
+  <div id="sanctuary-portal" class="portal-overlay active">
+    <div class="portal-content">
+      <div class="portal-sigil"></div>
+      <h1>The Library of My Dreams</h1>
+      <p class="portal-prompt">"The hidden realm lies here. Beyond the threshold a new realm accessed with tomes. Welcome to a whole new world!"</p>
+      <span class="portal-key-hint">[ Press <kbd>ENTER</kbd> to Cross the Threshold ]</span>
+    </div>
+  </div>
+
+  <!-- Sanctuary Container -->
+  <div class="sanctuary-wrapper">
+
+    <!-- Header / Atmosphere -->
+    <header class="sanctuary-header">
+      <div class="rain-overlay"></div>
+      <h1>The Library of My Dreams</h1>
+      <p class="tagline">"The outside world stays behind the glass. Here, the shelves hold  what is hidden"</p>
+    </header>
+
+    <main class="sanctuary-content">
+
+      <!-- Trigger Button to Open the Modal -->
+      <button id="open-modal-btn" class="secure-btn">Add New Volume</button>
+
+      <!-- The Secret Drawer / Dialog Modal -->
+      <dialog id="book-dialog" class="sanctuary-dialog">
+        <div class="dialog-content">
+          <div class="dialog-header">
+            <h2>Add to the Collection</h2>
+            <button id="close-modal-btn" class="close-x-btn">&times;</button>
+          </div>
+          <p class="guardian-note">No sloppy entries. Put the title, the author, and make sure every page counts.</p>
+          
+          <form id="book-form">
+            <div class="form-group">
+              <label for="title">Book Title</label>
+              <input type="text" id="title" required placeholder="e.g., The Master and Margarita">
+            </div>
+
+            <div class="form-group">
+              <label for="author">Author</label>
+              <input type="text" id="author" required placeholder="e.g., Mikhail Bulgakov">
+            </div>
+
+            <div class="form-group">
+              <label for="pages">Pages</label>
+              <input type="number" id="pages" required min="1" placeholder="390">
+            </div>
+
+            <div class="form-group checkbox-group">
+              <input type="checkbox" id="read">
+              <label for="read">Absorbed & Read</label>
+            </div>
+
+            <button type="submit" class="secure-btn">Place on Shelf</button>
+          </form>
+        </div>
+      </dialog>
+
+      <!-- The Bookshelf Wing -->
+      <section class="bookshelf-wing">
+        <h2>The Sanctuary Shelves</h2>
+        <div id="library" class="library-grid">
+          <!-- Dynamic book cards rendered via JavaScript appear here -->
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
