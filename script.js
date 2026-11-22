@@ -204,41 +204,57 @@ const authorInput = document.querySelector('#author');
 const pagesInput = document.querySelector('#pages');
 const readInput = document.querySelector('#read');
 
-function validateTitle() {
-  if (!titleInput) return true;
-  if (titleInput.value.trim() === '') {
-    titleInput.setCustomValidity('ARE YOU BLIND?! Give this damn volume a title!');
-    return false;
+const titleError = document.querySelector('#title-error');
+const authorError = document.querySelector('#author-error');
+const pagesError = document.querySelector('#pages-error');
+
+function setFieldValidation(input, errorEl, isInvalid, message) {
+  if (!input) return true;
+  const finalMessage = isInvalid ? message : '';
+  input.setCustomValidity(finalMessage);
+  if (errorEl) {
+    errorEl.textContent = finalMessage;
   }
-  titleInput.setCustomValidity('');
-  return true;
+  return !isInvalid;
+}
+
+function validateTitle() {
+  const isInvalid = !titleInput || titleInput.value.trim() === '';
+  return setFieldValidation(
+    titleInput,
+    titleError,
+    isInvalid,
+    'ARE YOU BLIND?! Give this damn volume a title!'
+  );
 }
 
 function validateAuthor() {
-  if (!authorInput) return true;
-  if (authorInput.value.trim() === '') {
-    authorInput.setCustomValidity('The author name must be filled, dumbass! Don’t leave it blank!');
-    return false;
-  }
-  authorInput.setCustomValidity('');
-  return true;
+  const isInvalid = !authorInput || authorInput.value.trim() === '';
+  return setFieldValidation(
+    authorInput,
+    authorError,
+    isInvalid,
+    'The author name must be filled, dumbass! Don’t leave it blank!'
+  );
 }
 
 function validatePages() {
   if (!pagesInput) return true;
   const pageCount = Number(pagesInput.value);
-  if (pagesInput.value.trim() === '' || Number.isNaN(pageCount) || pageCount < 1) {
-    pagesInput.setCustomValidity('Tch—at least 1 real page! Stop messing around!');
-    return false;
-  }
-  pagesInput.setCustomValidity('');
-  return true;
+  const isInvalid =
+    pagesInput.value.trim() === '' || Number.isNaN(pageCount) || pageCount < 1;
+  return setFieldValidation(
+    pagesInput,
+    pagesError,
+    isInvalid,
+    'Tch—at least 1 real page! Stop messing around!'
+  );
 }
 
 function clearCustomValidity() {
-  if (titleInput) titleInput.setCustomValidity('');
-  if (authorInput) authorInput.setCustomValidity('');
-  if (pagesInput) pagesInput.setCustomValidity('');
+  setFieldValidation(titleInput, titleError, false, '');
+  setFieldValidation(authorInput, authorError, false, '');
+  setFieldValidation(pagesInput, pagesError, false, '');
 }
 
 if (titleInput) titleInput.addEventListener('input', validateTitle);
