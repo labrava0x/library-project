@@ -218,6 +218,21 @@ dialog.sanctuary-dialog::backdrop {
   box-shadow: 0 0 10px rgba(255, 77, 0, 0.3);
 }
 
+.form-group input:invalid:not(:focus):not(:placeholder-shown) {
+  border-color: var(--accent-blaze);
+  box-shadow: 0 0 8px rgba(255, 77, 0, 0.2);
+}
+
+.error-msg {
+  display: block;
+  min-height: 1.1rem;
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--accent-ember);
+  text-shadow: 0 0 6px rgba(255, 77, 0, 0.25);
+}
+
 .checkbox-group {
   display: flex;
   align-items: center;
@@ -374,6 +389,7 @@ dialog.sanctuary-dialog::backdrop {
   border-color: #d16969;
   box-shadow: 0 0 10px rgba(209, 105, 105, 0.3);
 }
+
 /* ==========================================
    THE SANCTUARY PORTAL (IDLE / WAKE GATE)
    ========================================== */

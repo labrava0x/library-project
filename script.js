@@ -207,7 +207,7 @@ const readInput = document.querySelector('#read');
 function validateTitle() {
   if (!titleInput) return true;
   if (titleInput.value.trim() === '') {
-    titleInput.setCustomValidity('The book title must be filled!');
+    titleInput.setCustomValidity('ARE YOU BLIND?! Give this damn volume a title!');
     return false;
   }
   titleInput.setCustomValidity('');
@@ -217,7 +217,7 @@ function validateTitle() {
 function validateAuthor() {
   if (!authorInput) return true;
   if (authorInput.value.trim() === '') {
-    authorInput.setCustomValidity('The author name must be filled!');
+    authorInput.setCustomValidity('The author name must be filled, dumbass! Don’t leave it blank!');
     return false;
   }
   authorInput.setCustomValidity('');
@@ -228,7 +228,7 @@ function validatePages() {
   if (!pagesInput) return true;
   const pageCount = Number(pagesInput.value);
   if (pagesInput.value.trim() === '' || Number.isNaN(pageCount) || pageCount < 1) {
-    pagesInput.setCustomValidity('The page count must be at least 1!');
+    pagesInput.setCustomValidity('Tch—at least 1 real page! Stop messing around!');
     return false;
   }
   pagesInput.setCustomValidity('');

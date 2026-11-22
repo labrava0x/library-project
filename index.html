@@ -38,24 +38,27 @@
         <div class="dialog-content">
           <div class="dialog-header">
             <h2>Add to the Collection</h2>
-            <button id="close-modal-btn" class="close-x-btn">&times;</button>
+            <button id="close-modal-btn" class="close-x-btn">×</button>
           </div>
-          <p class="guardian-note">No sloppy entries. Put the title, the author, and make sure every page counts.</p>
+          <p class="guardian-note">No sloppy entries. Put a real title, name the damn author, and make sure every page counts.</p>
           
           <form id="book-form">
             <div class="form-group">
               <label for="title">Book Title</label>
               <input type="text" id="title" required placeholder="e.g., The Master and Margarita">
+              <span class="error-msg" id="title-error" aria-live="polite"></span>
             </div>
 
             <div class="form-group">
               <label for="author">Author</label>
               <input type="text" id="author" required placeholder="e.g., Mikhail Bulgakov">
+              <span class="error-msg" id="author-error" aria-live="polite"></span>
             </div>
 
             <div class="form-group">
               <label for="pages">Pages</label>
               <input type="number" id="pages" required min="1" placeholder="390">
+              <span class="error-msg" id="pages-error" aria-live="polite"></span>
             </div>
 
             <div class="form-group checkbox-group">
@@ -63,7 +66,7 @@
               <label for="read">Absorbed & Read</label>
             </div>
 
-            <button type="submit" class="secure-btn">Place on Shelf</button>
+            <button type="submit" class="secure-btn">SHOVE IT ON THE SHELF</button>
           </form>
         </div>
       </dialog>
