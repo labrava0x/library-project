@@ -28,7 +28,7 @@ function Book(title, author, pages, read) {
 // Prototype method to toggle read status
 Book.prototype.toggleRead = function() {
   this.read = !this.read;
-  saveAndRender(); 
+  saveAndRender();
 };
 
 // ==========================================
@@ -49,12 +49,12 @@ function loadLibrary() {
   const LIBRARY_VERSION = 'v12-gothic-classics-and-vendetta';
   const currentVersion = localStorage.getItem('libraryVersion');
   const storedLibrary = localStorage.getItem('myLibrary');
-  
+
   if (storedLibrary && currentVersion === LIBRARY_VERSION) {
     const parsedData = JSON.parse(storedLibrary);
     myLibrary = parsedData.map(item => {
       const book = new Book(item.title, item.author, item.pages, item.read);
-      book.id = item.id; 
+      book.id = item.id;
       return book;
     });
   } else {
@@ -155,7 +155,7 @@ function loadLibrary() {
     ];
 
     myLibrary = rawSeedData.map(item => new Book(item.title, item.author, item.pages, item.read));
-    
+
     localStorage.setItem('libraryVersion', LIBRARY_VERSION);
     saveAndRender();
   }
@@ -191,7 +191,7 @@ loadLibrary();
 renderLibrary();
 
 // ==========================================
-// 4. EVENT LISTENERS & MODAL CONTROLS
+// 4. EVENT LISTENERS, VALIDATION & MODAL CONTROLS
 // ==========================================
 const bookDialog = document.querySelector('#book-dialog');
 const openModalBtn = document.querySelector('#open-modal-btn');
@@ -199,14 +199,62 @@ const closeModalBtn = document.querySelector('#close-modal-btn');
 const bookForm = document.querySelector('#book-form');
 const libraryEl = document.querySelector('#library');
 
+const titleInput = document.querySelector('#title');
+const authorInput = document.querySelector('#author');
+const pagesInput = document.querySelector('#pages');
+const readInput = document.querySelector('#read');
+
+function validateTitle() {
+  if (!titleInput) return true;
+  if (titleInput.value.trim() === '') {
+    titleInput.setCustomValidity('The book title must be filled!');
+    return false;
+  }
+  titleInput.setCustomValidity('');
+  return true;
+}
+
+function validateAuthor() {
+  if (!authorInput) return true;
+  if (authorInput.value.trim() === '') {
+    authorInput.setCustomValidity('The author name must be filled!');
+    return false;
+  }
+  authorInput.setCustomValidity('');
+  return true;
+}
+
+function validatePages() {
+  if (!pagesInput) return true;
+  const pageCount = Number(pagesInput.value);
+  if (pagesInput.value.trim() === '' || Number.isNaN(pageCount) || pageCount < 1) {
+    pagesInput.setCustomValidity('The page count must be at least 1!');
+    return false;
+  }
+  pagesInput.setCustomValidity('');
+  return true;
+}
+
+function clearCustomValidity() {
+  if (titleInput) titleInput.setCustomValidity('');
+  if (authorInput) authorInput.setCustomValidity('');
+  if (pagesInput) pagesInput.setCustomValidity('');
+}
+
+if (titleInput) titleInput.addEventListener('input', validateTitle);
+if (authorInput) authorInput.addEventListener('input', validateAuthor);
+if (pagesInput) pagesInput.addEventListener('input', validatePages);
+
 if (openModalBtn && bookDialog) {
   openModalBtn.addEventListener('click', () => {
+    clearCustomValidity();
     bookDialog.showModal();
   });
 }
 
 if (closeModalBtn && bookDialog) {
   closeModalBtn.addEventListener('click', () => {
+    clearCustomValidity();
     bookDialog.close();
   });
 }
@@ -220,6 +268,7 @@ if (bookDialog) {
       e.clientY < dialogDimensions.top ||
       e.clientY > dialogDimensions.bottom
     ) {
+      clearCustomValidity();
       bookDialog.close();
     }
   });
@@ -229,13 +278,23 @@ if (bookForm && bookDialog) {
   bookForm.addEventListener('submit', function(event) {
     event.preventDefault();
 
-    const title = document.querySelector('#title').value;
-    const author = document.querySelector('#author').value;
-    const pages = document.querySelector('#pages').value;
-    const read = document.querySelector('#read').checked;
+    const isTitleValid = validateTitle();
+    const isAuthorValid = validateAuthor();
+    const isPagesValid = validatePages();
+
+    if (!isTitleValid || !isAuthorValid || !isPagesValid || !bookForm.checkValidity()) {
+      bookForm.reportValidity();
+      return;
+    }
+
+    const title = titleInput.value.trim();
+    const author = authorInput.value.trim();
+    const pages = Number(pagesInput.value);
+    const read = readInput ? readInput.checked : false;
 
     addBookToLibrary(title, author, pages, read);
     bookForm.reset();
+    clearCustomValidity();
     bookDialog.close();
   });
 }
@@ -244,7 +303,7 @@ if (libraryEl) {
   libraryEl.addEventListener('click', function(e) {
     const card = e.target.closest('.book-card');
     if (!card) return;
-    
+
     const bookId = card.dataset.id;
 
     if (e.target.classList.contains('remove-btn')) {
